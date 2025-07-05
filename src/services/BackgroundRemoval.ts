@@ -1,9 +1,12 @@
 import * as FileSystem from "expo-file-system";
 
-const FAL_API_KEY = process.env.EXPO_PUBLIC_FAL_KEY;
+const FAL_API_KEY = "57293d11-ccf8-48e1-af58-2ac699b54b04:0970f38712868fdc6a7b9b74c314798c";
 const API_ENDPOINT = "https://queue.fal.run/fal-ai/birefnet/v2";
 
 export const removeBackground = async (imageUri: string): Promise<string> => {
+  // 背景移除功能已禁用
+  throw new Error("背景移除功能已禁用");
+  /*
   console.debug("[BG Removal Service] Request Initiated Time:", new Date().toISOString());
   try {
     // Read the image file and convert it to Base64
@@ -111,4 +114,5 @@ export const removeBackground = async (imageUri: string): Promise<string> => {
     console.error("Error in removeBackground:", error);
     throw error;
   }
+  */
 };
