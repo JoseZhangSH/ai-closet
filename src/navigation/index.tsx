@@ -10,6 +10,7 @@ import OutfitManagementScreen from "../screens/OutfitManagementScreen";
 import OutfitCanvasScreen from "../screens/OutfitCanvasScreen";
 import OutfitDetailScreen from "../screens/OutfitDetailScreen";
 import VirtualTryOnScreen from "../screens/VirtualTryOnScreen";
+import OOTDRecordingScreen from "../screens/OOTDRecordingScreen";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/globalStyles";
 import {
@@ -74,6 +75,21 @@ const MainTabNavigator = () => (
       component={OutfitStackNavigator}
       options={{
         tabBarIcon: ({ color, size }) => <MaterialIcons name="style" size={size} color={color} />,
+      }}
+    />
+    <Tab.Screen
+      name="OOTDRecording"
+      component={OOTDRecordingScreen}
+      options={{
+        tabBarLabel: "",
+        tabBarIcon: ({ focused }) => (
+          <MaterialIcons 
+            name="add-circle" 
+            size={56} 
+            color={focused ? colors.primary : colors.text_gray} 
+            style={{ marginBottom: 10 }}
+          />
+        ),
       }}
     />
     <Tab.Screen

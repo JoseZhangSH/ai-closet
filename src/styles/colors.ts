@@ -4,10 +4,12 @@ export const colors = {
   text_primary: "#1E1E1E",
   text_gray: "#625845",
   text_gray_light: "#A39E9E",
+  text_secondary: "#757575",
 
   icon_stroke: "#1E1E1E",
   screen_background: "#FCFAF7",
   thumbnail_background: "#F2F0E8",
+  card_background: "#FFFFFF",
 
   background_dim: "rgba(0, 0, 0, 0.25)",
 
@@ -23,4 +25,7 @@ export const colors = {
   border_gray_light: "#E0E0E0",
 
   primary_red: "#FF2000",
+  
+  // Alias for compatibility
+  primary: "#F4C753",
 };
