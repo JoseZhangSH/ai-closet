@@ -1,0 +1,55 @@
+name: Mobile Testing Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Setup EAS
+      uses: expo/expo-github-action@v8
+      with:
+        expo-version: latest
+        eas-version: latest
+        token: ${{ secrets.EXPO_TOKEN }}
+        
+    - name: Build development app for Android
+      run: eas build --platform android --profile development --non-interactive
+      
+    - name: Build development app for iOS
+      run: eas build --platform ios --profile development --non-interactive
+      if: github.ref == 'refs/heads/main'
+      
+    - name: Send notification
+      run: |
+        echo "Build completed successfully!"
+        echo "Download links will be available in EAS dashboard"
+        
+    - name: Comment PR with build info
+      uses: actions/github-script@v6
+      if: github.event_name == 'pull_request'
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '🚀 Mobile test build has been triggered! Check the EAS dashboard for download links.'
+          })
