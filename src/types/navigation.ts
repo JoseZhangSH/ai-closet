@@ -12,6 +12,7 @@ export type RootStackParamList = {
 export type MainTabParamList = {
   Closet: NavigatorScreenParams<ClosetStackParamList>;
   Outfits: NavigatorScreenParams<OutfitStackParamList>;
+  OOTDRecording: undefined;
   TryOn: NavigatorScreenParams<TryOnStackParamList>;
   Profile: undefined;
 };
